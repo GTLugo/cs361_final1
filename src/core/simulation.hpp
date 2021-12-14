@@ -1,36 +1,24 @@
 #pragma once
 
-#include "util/chance.hpp"
+#include <utility>
 
-#include "vehicle.hpp"
-#include "supply_depot.hpp"
+#include "util/chance.hpp"
 
 namespace gtl {
   class Simulation {
   public:
-    Simulation() = default;
+    explicit Simulation(std::vector<std::string> args);
     ~Simulation() = default;
     
     void run();
   private:
+    std::vector<std::string> args_;
     bool shouldStop_{false};
-    fge::Time time_{10.};
+    fge::Time time_{32.};
     u32 timeStep_{1};
-    u32 maxTimeStep_{100};
+    u32 maxTimeStep_{32};
 
     // Sim specific
-    float avgVehicles_{3};
-    float stdDevVehicles_{1};
-    SupplyDepot depot_{};
-
-    std::priority_queue<Vehicle> waitingVehicles_{};
-    std::vector<Part> scrapParts_{};
-    std::array<Vehicle, 3> repairBays_;
-    std::vector<Vehicle> testingZone_{};
-
-    void generateVehicles(i32 count);
-    void repairVehicles();
-    void testVehicles();
 
     void fixedUpdateLoop(const std::function<void()>& action);
   };
