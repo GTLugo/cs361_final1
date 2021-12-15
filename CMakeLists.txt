@@ -14,7 +14,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/$<CONFIG>/${CMAKE_S
 
 set(SOURCE_FILES
     src/main.cpp
-    src/core/simulation.cpp)
+    src/core/simulation.cpp src/core/target.cpp)
 
 # ===================================================
 # ADD EXECUTABLE TARGET
